@@ -14,5 +14,7 @@ export const AnimatedLoader = withTransition(Loader)
 export const AnimatedOption = withTransition(Option)
 export const AnimatedOptionChooser = withTransition(OptionChooser)
 
+export { default as AppFooter } from './AppFooter'
+export { default as AppHeader } from './AppHeader'
 export { default as Board } from './Board'
 export { default as GameScore } from './GameScore'

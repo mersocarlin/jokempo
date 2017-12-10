@@ -6,7 +6,13 @@ import { Grid } from 'semantic-ui-react'
 
 import ActionCreators from '../actions'
 
-import { AnimatedOptionChooser, Board, GameScore } from '../components'
+import {
+  AnimatedOptionChooser,
+  AppFooter,
+  AppHeader,
+  Board,
+  GameScore,
+} from '../components'
 import options from '../utils/options'
 import getGameResult from '../utils/getGameResult'
 
@@ -26,27 +32,33 @@ function Jokempo({ game, onNewGame, onOptionClick }: PropsT) {
     : game.result.loss ? 'red' : game.result.tie ? 'grey' : 'teal'
 
   return (
-    <Grid style={{ height: '100%' }} verticalAlign="middle">
-      <Grid.Row color={backgroundColor}>
-        <Grid.Column>
-          <GameScore color={backgroundColor} {...game.score} />
-          {game.stage === 'init' && (
-            <AnimatedOptionChooser
-              animation="scale"
-              onOptionClick={onOptionClick}
-              visible={!game.userOption}
-            />
-          )}
-          {game.stage === 'started' && (
-            <Board
-              computerOption={game.computerOption}
-              onNewGame={onNewGame}
-              {...game}
-            />
-          )}
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
+    <div style={{ height: '100%' }}>
+      <AppHeader color={backgroundColor} header name="Jokempô" position="top" />
+
+      <Grid style={{ height: '100%' }} verticalAlign="middle">
+        <Grid.Row color={backgroundColor}>
+          <Grid.Column>
+            <GameScore color={backgroundColor} {...game.score} />
+            {game.stage === 'init' && (
+              <AnimatedOptionChooser
+                animation="scale"
+                onOptionClick={onOptionClick}
+                visible={!game.userOption}
+              />
+            )}
+            {game.stage === 'started' && (
+              <Board
+                computerOption={game.computerOption}
+                onNewGame={onNewGame}
+                {...game}
+              />
+            )}
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+
+      <AppFooter color={backgroundColor} />
+    </div>
   )
 }
 
