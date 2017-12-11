@@ -10,6 +10,7 @@ describe('AppFooter', () => {
   beforeEach(() => {
     component = mount(<AppFooter color="teal" />)
   })
+
   it('should change color', () => {
     expect(component.find(Menu).prop('color')).toBe('teal')
 
@@ -18,5 +19,23 @@ describe('AppFooter', () => {
 
     component.setProps({ color: 'green' })
     expect(component.find(Menu).prop('color')).toBe('green')
+  })
+
+  it('should link github repo', () => {
+    expect(
+      component
+        .find(Menu.Item)
+        .at(0)
+        .prop('href')
+    ).toContain('github.com/mersocarlin')
+  })
+
+  it('should link icons8', () => {
+    expect(
+      component
+        .find(Menu.Item)
+        .at(1)
+        .text()
+    ).toBe('Icons8')
   })
 })
