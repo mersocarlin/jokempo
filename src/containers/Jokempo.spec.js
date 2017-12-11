@@ -16,12 +16,14 @@ describe('Jokempo', () => {
   let onComputerChoseOption
   let onSetResult
   let onStartNewGame
+  let onTrackPageView
 
   beforeEach(() => {
     onComputerChoseOption = jest.fn()
     onUserChoseOption = jest.fn()
     onSetResult = jest.fn()
     onStartNewGame = jest.fn()
+    onTrackPageView = jest.fn()
 
     component = mount(
       <EnhancedJokempo
@@ -30,6 +32,7 @@ describe('Jokempo', () => {
         computerChoseOption={onComputerChoseOption}
         setResult={onSetResult}
         startNewGame={onStartNewGame}
+        trackPageView={onTrackPageView}
       />
     )
   })
@@ -39,6 +42,10 @@ describe('Jokempo', () => {
     onUserChoseOption.mockReset()
     onSetResult.mockReset()
     onStartNewGame.mockReset()
+  })
+
+  it('should track page view on mount', () => {
+    expect(onTrackPageView).toHaveBeenCalled()
   })
 
   it('should render OptionChooser initially', () => {
