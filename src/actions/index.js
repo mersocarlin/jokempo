@@ -1,3 +1,4 @@
+import Analytics from './analytics'
 import Game from './gameActions'
 
-export default { Game }
+export default { Analytics, Game }
