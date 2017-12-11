@@ -1,7 +1,7 @@
 // @flow
 import React from 'react'
 import { connect } from 'react-redux'
-import { withHandlers } from 'recompose'
+import { compose, lifecycle, withHandlers } from 'recompose'
 import { Grid } from 'semantic-ui-react'
 
 import ActionCreators from '../actions'
@@ -62,20 +62,29 @@ function Jokempo({ game, onNewGame, onOptionClick }: PropsT) {
   )
 }
 
-export const EnhancedJokempo = withHandlers({
-  onOptionClick: ({ computerChoseOption, userChoseOption, setResult }) => (
-    userOption: OptionTypeT
-  ) => {
-    userChoseOption(userOption)
+export const EnhancedJokempo = compose(
+  withHandlers({
+    onOptionClick: ({ computerChoseOption, userChoseOption, setResult }) => (
+      userOption: OptionTypeT
+    ) => {
+      userChoseOption(userOption)
 
-    setTimeout(() => {
-      const computerOption = options[Math.floor(Math.random() * 3)]
-      computerChoseOption(computerOption)
-      setResult(getGameResult(userOption, computerOption))
-    }, 2 * 1000)
-  },
-  onNewGame: ({ startNewGame }) => () => startNewGame(),
-})(Jokempo)
+      setTimeout(() => {
+        const computerOption = options[Math.floor(Math.random() * 3)]
+        computerChoseOption(computerOption)
+        setResult(getGameResult(userOption, computerOption))
+      }, 2 * 1000)
+    },
+    onNewGame: ({ startNewGame }) => () => startNewGame(),
+  }),
+  lifecycle({
+    componentDidMount() {
+      this.props.trackPageView(
+        window.location.pathname + window.location.search
+      )
+    },
+  })
+)(Jokempo)
 
 const ConnectedJokempo = connect(
   state => ({
@@ -86,6 +95,7 @@ const ConnectedJokempo = connect(
     userChoseOption: ActionCreators.Game.userChoseOption,
     setResult: ActionCreators.Game.setResult,
     startNewGame: ActionCreators.Game.startNewGame,
+    trackPageView: ActionCreators.Analytics.trackPageView,
   }
 )(EnhancedJokempo)
 
