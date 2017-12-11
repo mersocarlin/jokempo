@@ -8,7 +8,7 @@ type ApiPropsT = {
 
 export default function AppFooter({ color }: ApiPropsT) {
   return (
-    <Menu borderless color={color} fixed="bottom" inverted size="tiny">
+    <Menu borderless color={color} fixed="bottom" inverted>
       <Menu.Item href="https://github.com/mersocarlin/jokempo" target="_blank">
         <Icon name="github" />
       </Menu.Item>
