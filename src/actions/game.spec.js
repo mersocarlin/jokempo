@@ -1,4 +1,4 @@
-import GameActionCreators from './gameActions'
+import GameActionCreators from './game'
 
 import getGameResult from '../utils/getGameResult'
 
