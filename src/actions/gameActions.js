@@ -8,7 +8,7 @@ const userChoseOption = option => ({
   option,
   analytics: {
     category: 'USER',
-    event: `User chose ${option}`,
+    action: `User chose ${option}`,
   },
 })
 
@@ -17,7 +17,7 @@ const computerChoseOption = option => ({
   option,
   analytics: {
     category: 'COMPUTER',
-    event: `Computer chose ${option}`,
+    action: `Computer chose ${option}`,
   },
 })
 
@@ -26,7 +26,7 @@ const setResult = result => ({
   result,
   analytics: {
     category: 'GAME',
-    event: result.message,
+    action: result.message,
   },
 })
 
@@ -34,7 +34,7 @@ const startNewGame = () => ({
   type: START_NEW_GAME,
   analytics: {
     category: 'GAME',
-    event: 'Start new game',
+    action: 'Start new game',
   },
 })
 

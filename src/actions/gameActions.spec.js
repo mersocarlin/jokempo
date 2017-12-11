@@ -9,7 +9,7 @@ describe('gameActions', () => {
       option: 'paper',
       analytics: {
         category: 'USER',
-        event: 'User chose paper',
+        action: 'User chose paper',
       },
     })
   })
@@ -20,7 +20,7 @@ describe('gameActions', () => {
       option: 'paper',
       analytics: {
         category: 'COMPUTER',
-        event: 'Computer chose paper',
+        action: 'Computer chose paper',
       },
     })
   })
@@ -32,7 +32,7 @@ describe('gameActions', () => {
       result,
       analytics: {
         category: 'GAME',
-        event: result.message,
+        action: result.message,
       },
     })
   })
@@ -42,7 +42,7 @@ describe('gameActions', () => {
       type: GameActionCreators.START_NEW_GAME,
       analytics: {
         category: 'GAME',
-        event: 'Start new game',
+        action: 'Start new game',
       },
     })
   })
