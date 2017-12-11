@@ -7,6 +7,10 @@ describe('gameActions', () => {
     expect(GameActionCreators.userChoseOption('paper')).toEqual({
       type: GameActionCreators.USER_CHOSE_OPTION,
       option: 'paper',
+      analytics: {
+        category: 'USER',
+        event: 'User chose paper',
+      },
     })
   })
 
@@ -14,6 +18,10 @@ describe('gameActions', () => {
     expect(GameActionCreators.computerChoseOption('paper')).toEqual({
       type: GameActionCreators.COMPUTER_CHOSE_OPTION,
       option: 'paper',
+      analytics: {
+        category: 'COMPUTER',
+        event: 'Computer chose paper',
+      },
     })
   })
 
@@ -22,12 +30,20 @@ describe('gameActions', () => {
     expect(GameActionCreators.setResult(result)).toEqual({
       type: GameActionCreators.SET_RESULT,
       result,
+      analytics: {
+        category: 'GAME',
+        event: result.message,
+      },
     })
   })
 
   it('should create startNewGame action', () => {
     expect(GameActionCreators.startNewGame()).toEqual({
       type: GameActionCreators.START_NEW_GAME,
+      analytics: {
+        category: 'GAME',
+        event: 'Start new game',
+      },
     })
   })
 })
